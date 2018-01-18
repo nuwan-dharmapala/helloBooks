@@ -26,6 +26,5 @@ export const hashPassword = (user) => {
  *
  * @return {String}                   jsonwebtoken
  */
-export const getJWT = (options,
-  expiresIn = Number(process.env.JWT_EXPIRATION)) =>
-  jwt.sign({ ...options }, process.env.SECRET, { expiresIn });
+export const getJWT = (options) =>
+  jwt.sign({ ...options }, process.env.SECRET);

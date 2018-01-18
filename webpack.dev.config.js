@@ -3,11 +3,14 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.config');
 
-module.exports = merge(common, {
+const devConfig = {
   devtool: 'inline-source-map',
   devServer: {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'client'),
+    proxy: {
+      '/api/v1/': 'http://127.0.0.1:4000/',
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -17,4 +20,6 @@ module.exports = merge(common, {
       },
     })
   ],
-});
+};
+
+module.exports = merge(common, devConfig);
